@@ -1,7 +1,7 @@
 {
 	"name": "transactiontbltransfer-pl",
 	"properties": {
-		"description": "Transaction table",
+		"description": "Transaction table parallel execution using 2 copy acivity",
 		"activities": [
 			{
 				"name": "copy_transanction_tbl_1",
