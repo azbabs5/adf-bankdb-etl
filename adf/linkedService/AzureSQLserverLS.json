@@ -1,0 +1,18 @@
+{
+	"name": "AzureSQLserverLS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Azure SQL Databases Linked Services",
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "azbabs-sqlserver.database.windows.net",
+			"database": "azbabs-etl-db",
+			"encrypt": "optional",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "azbabs",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEVGQzE2RTJELTRBQTgtNDE2RC1CNUM2LUI5MzE0NDRENzA0MV8yNjgwNGFlOS03YWU2LTQxNWItOWUxYy03MTRjM2M4NTg0MWUiDQp9"
+		}
+	}
+}

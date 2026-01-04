@@ -1,0 +1,151 @@
+{
+	"name": "transactiontbltransfer-pl",
+	"properties": {
+		"description": "Transaction table",
+		"activities": [
+			{
+				"name": "copy_transanction_tbl_1",
+				"description": "Copy transaction table",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": {
+							"value": "SELECT *\nFROM Transactions\nWHERE TransactionID BETWEEN @{pipeline().parameters.startid_101}\n                        AND @{pipeline().parameters.endid_110}\n",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "localtransactiontbl_ds",
+						"type": "DatasetReference",
+						"parameters": {
+							"startid": {
+								"value": "@pipeline().parameters.startid_101",
+								"type": "Expression"
+							},
+							"endid": {
+								"value": "@pipeline().parameters.endid_110",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "azuretransactions_ds",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "copy_transanction_tbl_2",
+				"description": "Copy transaction table",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": {
+							"value": "SELECT *\nFROM Transactions\nWHERE TransactionID BETWEEN @{pipeline().parameters.startid_111}\n                        AND @{pipeline().parameters.endid_120}\n",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "localtransactiontbl_ds",
+						"type": "DatasetReference",
+						"parameters": {
+							"startid": {
+								"value": "@pipeline().parameters.startid_111",
+								"type": "Expression"
+							},
+							"endid": {
+								"value": "@pipeline().parameters.endid_120",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "azuretransactions_ds",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"parameters": {
+			"startid_101": {
+				"type": "int",
+				"defaultValue": 101
+			},
+			"endid_110": {
+				"type": "int",
+				"defaultValue": 110
+			},
+			"startid_111": {
+				"type": "int",
+				"defaultValue": 111
+			},
+			"endid_120": {
+				"type": "int",
+				"defaultValue": 120
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-12-28T05:22:42Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

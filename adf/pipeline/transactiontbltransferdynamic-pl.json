@@ -1,0 +1,92 @@
+{
+	"name": "transactiontbltransferdynamic-pl",
+	"properties": {
+		"description": "Transaction table transfer dynamic",
+		"activities": [
+			{
+				"name": "transactiontransfercopy_dynamicrange",
+				"description": "Transaction table transfer using dynamicrange",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "truncate_transaction_sp",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "DynamicRange",
+						"partitionSettings": {
+							"partitionColumnName": "TransactionID",
+							"partitionUpperBound": "101",
+							"partitionLowerBound": "120"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "localtransactiontbl_dynamicrange_ds",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "azuretransactiontbl_dynamicrange_ds",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "truncate_transaction_sp",
+				"description": "Truncate transaction table using stored proecdure",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[usp_Truncate_Transactions]"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureSQLserverLS",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-12-28T14:06:36Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

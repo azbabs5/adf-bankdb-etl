@@ -1,0 +1,40 @@
+{
+	"name": "azuretransactiontbl_dynamicrange_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSQLserverLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TransactionID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Amount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "TransactionDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Transactions"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,7 @@
+{
+	"name": "integrationRuntime-selfhosted",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "Created for on-premises sql server"
+	}
+}

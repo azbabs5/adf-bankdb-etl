@@ -1,0 +1,26 @@
+{
+	"name": "customer_load_one_time",
+	"properties": {
+		"description": "customer load",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "customertbltransfer-pl",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 20,
+				"startTime": "2025-12-26T23:07:00",
+				"endTime": "2025-12-26T23:10:00",
+				"timeZone": "Eastern Standard Time"
+			}
+		}
+	}
+}

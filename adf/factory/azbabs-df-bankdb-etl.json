@@ -1,0 +1,9 @@
+{
+	"name": "azbabs-df-bankdb-etl",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "0f5f3d82-bbec-4211-979b-fac37f8769bc",
+		"tenantId": "520d48a2-7844-4966-bc49-d63e66863d1a"
+	}
+}
