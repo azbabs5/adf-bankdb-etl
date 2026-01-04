@@ -1,7 +1,7 @@
 {
 	"name": "customertbltransfer-pl",
 	"properties": {
-		"description": "Customer table transfer",
+		"description": "This pipeline will transfer data Customer table from local sql server to azure sql database.",
 		"activities": [
 			{
 				"name": "Customertblcopy",
