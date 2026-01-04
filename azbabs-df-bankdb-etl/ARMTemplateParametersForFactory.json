@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "azbabs-df-bankdb-etl"
+		},
+		"AzureSQLserverLS_password": {
+			"value": ""
+		},
+		"LocalSqlServerLS_password": {
+			"value": ""
+		},
+		"AzureSQLserverLS_properties_typeProperties_server": {
+			"value": "azbabs-sqlserver.database.windows.net"
+		},
+		"AzureSQLserverLS_properties_typeProperties_database": {
+			"value": "azbabs-etl-db"
+		},
+		"AzureSQLserverLS_properties_typeProperties_userName": {
+			"value": "azbabs"
+		},
+		"LocalSqlServerLS_properties_typeProperties_server": {
+			"value": "localhost"
+		},
+		"LocalSqlServerLS_properties_typeProperties_database": {
+			"value": "BankDB"
+		},
+		"LocalSqlServerLS_properties_typeProperties_userName": {
+			"value": "sa"
+		}
+	}
+}

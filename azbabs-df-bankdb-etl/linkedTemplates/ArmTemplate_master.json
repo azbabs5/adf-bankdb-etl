@@ -1,0 +1,98 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "azbabs-df-bankdb-etl"
+		},
+		"AzureSQLserverLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSQLserverLS'"
+		},
+		"LocalSqlServerLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LocalSqlServerLS'"
+		},
+		"AzureSQLserverLS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azbabs-sqlserver.database.windows.net"
+		},
+		"AzureSQLserverLS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "azbabs-etl-db"
+		},
+		"AzureSQLserverLS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "azbabs"
+		},
+		"LocalSqlServerLS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "localhost"
+		},
+		"LocalSqlServerLS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "BankDB"
+		},
+		"LocalSqlServerLS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "azbabs-df-bankdb-etl_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureSQLserverLS_password": {
+						"value": "[parameters('AzureSQLserverLS_password')]"
+					},
+					"LocalSqlServerLS_password": {
+						"value": "[parameters('LocalSqlServerLS_password')]"
+					},
+					"AzureSQLserverLS_properties_typeProperties_server": {
+						"value": "[parameters('AzureSQLserverLS_properties_typeProperties_server')]"
+					},
+					"AzureSQLserverLS_properties_typeProperties_database": {
+						"value": "[parameters('AzureSQLserverLS_properties_typeProperties_database')]"
+					},
+					"AzureSQLserverLS_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSQLserverLS_properties_typeProperties_userName')]"
+					},
+					"LocalSqlServerLS_properties_typeProperties_server": {
+						"value": "[parameters('LocalSqlServerLS_properties_typeProperties_server')]"
+					},
+					"LocalSqlServerLS_properties_typeProperties_database": {
+						"value": "[parameters('LocalSqlServerLS_properties_typeProperties_database')]"
+					},
+					"LocalSqlServerLS_properties_typeProperties_userName": {
+						"value": "[parameters('LocalSqlServerLS_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
